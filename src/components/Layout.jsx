@@ -24,7 +24,7 @@ function Layout() {
 
   return (
     <div className="layout">
-      <NavBar logout={logout}/>
+      { isLoggedIn ? <NavBar logout={logout}/> : <navigate to="/login" />}
       <Outlet context={login}/>
     </div>
   )
