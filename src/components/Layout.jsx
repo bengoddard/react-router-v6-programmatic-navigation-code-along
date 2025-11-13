@@ -1,9 +1,10 @@
-import { Outlet } from "react-router-dom"
-import { useState } from 'react'
+import { Outlet, useNavigate } from "react-router-dom"
+import { useEffect, useState } from 'react'
 import NavBar from "./NavBar"
 
 function Layout() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const login = () => {
     setIsLoggedIn(true)
@@ -12,6 +13,14 @@ function Layout() {
   const logout = () => {
     setIsLoggedIn(false)
   }
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      navigate("/")
+    } else{
+      navigate("/login")
+    }
+  }, [isLoggedIn])
 
   return (
     <div className="layout">
